@@ -1,40 +1,62 @@
 part of 'show_bloc.dart';
 
-class ShowState {
+class ShowState extends Equatable {
   final List<String> urls;
-  final int currentIndex;
   final bool loading;
-  final Set<int> initializedIndices;
   final bool error;
+  final int currentIndex;
+  final Set<int> initializedIndices;
+  final bool isLoadingMore;
+
+  /// Provide a callback for pagination
+  final Future<List<String>> Function()? fetchMoreCallback;
 
   const ShowState({
     required this.urls,
-    required this.currentIndex,
     required this.loading,
-    required this.initializedIndices,
     required this.error,
+    required this.currentIndex,
+    required this.initializedIndices,
+    required this.isLoadingMore,
+    this.fetchMoreCallback,
   });
 
   const ShowState.initial()
       : urls = const [],
-        currentIndex = 0,
         loading = false,
+        error = false,
+        currentIndex = 0,
         initializedIndices = const {},
-        error = false;
+        isLoadingMore = false,
+        fetchMoreCallback = null;
 
   ShowState copyWith({
     List<String>? urls,
-    int? currentIndex,
     bool? loading,
-    Set<int>? initializedIndices,
     bool? error,
+    int? currentIndex,
+    Set<int>? initializedIndices,
+    bool? isLoadingMore,
+    Future<List<String>> Function()? fetchMoreCallback,
   }) {
     return ShowState(
       urls: urls ?? this.urls,
-      currentIndex: currentIndex ?? this.currentIndex,
       loading: loading ?? this.loading,
-      initializedIndices: initializedIndices ?? this.initializedIndices,
       error: error ?? this.error,
+      currentIndex: currentIndex ?? this.currentIndex,
+      initializedIndices: initializedIndices ?? this.initializedIndices,
+      isLoadingMore: isLoadingMore ?? this.isLoadingMore,
+      fetchMoreCallback: fetchMoreCallback ?? this.fetchMoreCallback,
     );
   }
+
+  @override
+  List<Object?> get props => [
+        urls,
+        loading,
+        error,
+        currentIndex,
+        initializedIndices,
+        isLoadingMore,
+      ];
 }
