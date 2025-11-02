@@ -22,3 +22,12 @@ class PageChanged extends ShowEvent {
 }
 
 class DisposeAll extends ShowEvent {}
+
+class TogglePlayPause extends ShowEvent {
+  final int index;
+  TogglePlayPause(this.index);
+
+  @override
+  List<Object?> get props => [index];
+}
+
