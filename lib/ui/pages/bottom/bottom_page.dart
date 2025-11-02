@@ -18,7 +18,6 @@ class _BottomPageState extends State<BottomPage> {
 
   final List<Widget> _screens = [
     Container(),
-    Container(),
     ShowPage(),
     Container(),
   ];
@@ -68,19 +67,6 @@ class _BottomPageState extends State<BottomPage> {
                   height: iconSize,
                 ),
                 label: 'Home',
-              ),
-              BottomNavigationBarItem(
-                icon: SvgPicture.asset(
-                  'assets/icons/yours.svg',
-                  width: iconSize,
-                  height: iconSize,
-                ),
-                activeIcon: SvgPicture.asset(
-                  'assets/icons/yours.svg',
-                  width: iconSize,
-                  height: iconSize,
-                ),
-                label: 'Yours',
               ),
               BottomNavigationBarItem(
                 icon: SvgPicture.asset(

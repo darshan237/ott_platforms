@@ -12,8 +12,8 @@ class ShowBloc extends Bloc<ShowEvent, ShowState> {
   /// Sliding window sizes
   final int preloadAhead = 1;   // preload 1 next reel
   final int preloadBehind = 1;  // preload 1 previous reel
-  final int retainAhead = 3;    // keep only 3 next reels alive
-  final int retainBehind = 2;   // keep only 2 previous reels alive
+  final int retainAhead = 10;    // keep only 3 next reels alive
+  final int retainBehind = 5;   // keep only 2 previous reels alive
 
   ShowBloc() : super(const ShowState.initial()) {
     on<LoadVideos>(_onLoadVideos);
@@ -74,7 +74,7 @@ class ShowBloc extends Bloc<ShowEvent, ShowState> {
 
     // load next 5 when user reaches last 5
     if (index >= state.urls.length - 5) {
-      add(LoadMoreVideos(state.fetchMoreCallback));
+      add(LoadMoreVideos(state.fetchMoreCallback!));
     }
 
     // Initialize video
